@@ -14,7 +14,13 @@
       --grey-color: #707070;
       --grey-color-light: #aaa;
   }
-
+a{
+    text-decoration: none;
+    color: var(--grey-color);
+}
+a:hover{
+    color: var(--white-color);
+}
   body {
       background-color: #e7f2fd;
       transition: all 0.5s ease;
