@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<!-- Coding by CodingNepal || www.codingnepalweb.com -->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>Sales Report</title>
+    <link rel="stylesheet" href="/css/dash.css" />
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!----======== Favicon ======== -->
+    <link rel="icon" href="/assets/favicon.ico" type="images/x-icon">
+
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<style>
+    /* Import Google font - Poppins */
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    :root {
+        --white-color: #fff;
+        --red-color: #ff1800;
+        --grey-color: #707070;
+        --grey-color-light: #aaa;
+    }
+
+    .active {
+        background-color: rgb(14, 172, 122);
+        color: rgb(255, 255, 255);
+    }
+
+    @media (min-width: 1024px) {
+        .lg\\:flex {
+            display: flex;
+        }
+
+        .lg\\:hidden {
+            display: none;
+        }
+    }
+</style>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar">
+        <div class="logo_item">
+            <i class="bx bx-menu" id="sidebarOpen"></i>
+            <img src="/assets/LOGOMARK png.png" alt=""></i>Lagaula
+        </div>
+
+        <div class="search_bar">
+            <input type="text" placeholder="Search" />
+        </div>
+
+        <div class="navbar_content">
+            <i class="bi bi-grid"></i>
+            <i class='bx bx-bell'></i>
+            <a href="user.html">
+                <i class="bx bx-user"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!--Dash Content-->
+    <div class="dash-content">
+        <div class="overview">
+            <div class="title">
+                <i class="uil uil-tachometer-fast-alt"></i>
+                <span class="text">Dashboard</span>
+            </div>
+
+
+        </div>
+        <div class="px-4 py-1 flex items-center justify-between">
+            <div class="flex items-center cursor-pointer">
+            </div>
+            <!-- Sidebar toggle button -->
+            <button id="toggleSidebar" class="block lg:hidden focus:outline-none">
+                <!-- Use a more intuitive icon -->
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- Main Content -->
+        <main class="flex-grow p-4 lg:p-8">
+            <div class="max-w-6xl mx-auto">
+                <!-- Dashboard Header -->
+                <!-- Line Chart -->
+                <div class="bg-white rounded-lg shadow p-4 lg:p-6 mb-4 lg:mb-8">
+                    <canvas id="lineChart" width="400" height="200"></canvas>
+                </div>
+                <!-- Pie Chart and Waste Amount Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <!-- Pie Chart -->
+                    <div class="bg-white rounded-lg shadow p-4 lg:p-6">
+                        <canvas id="pieChart" width="400" height="200"></canvas>
+                    </div>
+                    <!-- Waste Amount Section -->
+                    <div class="bg-white rounded-lg shadow p-4 lg:p-6">
+                        <h2 class="text-lg font-semibold mb-2">Waste Amounts (kg)</h2>
+                        <ul class="divide-y divide-gray-300">
+                            <li class="py-2">
+                                <span class="text-gray-600">Total Sales:</span>
+                                <span id="degradableAmount" class="text-blue-600 ml-2">0 kg</span>
+                            </li>
+                            <li class="py-2">
+                                <span class="text-gray-600">Total Orders:</span>
+                                <span id="nonDegradableAmount" class="text-red-600 ml-2">0 kg</span>
+                            </li>
+                            <li class="py-2">
+                                <span class="text-gray-600">Others:</span>
+                                <span id="othersAmount" class="text-green-600 ml-2">0 kg</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- sidebar -->
+      <!-- sidebar -->
+      <nav class="sidebar">
+        <div class="menu_content">
+            <ul class="menu_items">
+                <div class="menu_title menu_dahsboard"></div>
+                <!-- start -->
+                <li class="item">
+                    <div href="Lagaula.html" class="nav_link submenu_item">
+                        <span class="navlink_icon">
+                            <i class="bx bx-home-alt"></i>
+                        </span>
+                        <span class="navlink">Home</span>
+                    </div>
+                </li>
+                <!-- end -->
+
+                <!-- start -->
+                <li class="item">
+                    <div href="#" class="nav_link submenu_item">
+                        <span class="navlink_icon">
+                            <i class="bx bx-grid-alt"></i>
+                        </span>
+                        <span class="navlink">Products</span>
+                        <i class="bx bx-chevron-right arrow-left"></i>
+                    </div>
+
+                    <ul class="menu_items submenu">
+                        <a href="productAll.html" class="nav_link sublink">All Products</a>
+                        <a href="addProduct.html" class="nav_link sublink">Add Products</a>
+
+                    </ul>
+                </li>
+
+                <li class="item">
+                    <div href="allOrder.html" class="nav_link submenu_item">
+                        <span class="navlink_icon">
+                            <i class="bx bxs-magic-wand"></i>
+                        </span>
+                        <span class="navlink">Order</span>
+                        <i class="bx bx-chevron-right arrow-left"></i>
+                    </div>
+
+                    <ul class="menu_items submenu">
+                        <a href="allOrder.html" class="nav_link sublink">All Orders</a>
+
+                    </ul>
+                </li>
+
+                <li class="item">
+                    <div href="#" class="nav_link submenu_item">
+                        <span class="navlink_icon">
+                            <i class="bx bx-user"></i>
+                        </span>
+                        <span class="navlink">Customer</span>
+                        <i class="bx bx-chevron-right arrow-left"></i>
+                    </div>
+
+                    <ul class="menu_items submenu">
+                        <a href="allCustomer.html" class="nav_link sublink">All Customers</a>
+
+                    </ul>
+                </li>
+
+                <li class="item">
+                    <div href="#" class="nav_link submenu_item">
+                        <span class="navlink_icon">
+                            <i class="bx bx-chart"></i>
+                        </span>
+                        <span class="navlink">Reports</span>
+                        <i class="bx bx-chevron-right arrow-left"></i>
+                    </div>
+
+                    <ul class="menu_items submenu">
+                        <a href="sales.html" class="nav_link sublink">Sales Reports</a>
+
+                    </ul>
+                </li>
+
+                <li class="item">
+                    <div href="#" class="nav_link submenu_item">
+                        <span class="navlink_icon">
+                            <i class="bx bx-cog"></i>
+                        </span>
+                        <span class="navlink">Setting</span>
+                        <i class="bx bx-chevron-right arrow-left"></i>
+                    </div>
+
+                    <ul class="menu_items submenu">
+                        <a href="setting.html" class="nav_link sublink">User Setting</a>
+
+                    </ul>
+                </li>
+                <!-- end -->
+            </ul>
+
+            <!-- Sidebar Open / Close -->
+            <div class="bottom_content">
+                <div class="bottom expand_sidebar">
+                    <span> Expand</span>
+                    <i class='bx bx-log-in'></i>
+                </div>
+                <div class="bottom collapse_sidebar">
+                    <span> Collapse</span>
+                    <i class='bx bx-log-out'></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const body = document.querySelector("body");
+        const sidebar = document.querySelector(".sidebar");
+        const submenuItems = document.querySelectorAll(".submenu_item");
+        const sidebarOpen = document.querySelector("#sidebarOpen");
+        const sidebarClose = document.querySelector(".collapse_sidebar");
+        const sidebarExpand = document.querySelector(".expand_sidebar");
+        sidebarOpen.addEventListener("click", () => sidebar.classList.toggle("close"));
+
+        sidebarClose.addEventListener("click", () => {
+            sidebar.classList.add("close", "hoverable");
+        });
+        sidebarExpand.addEventListener("click", () => {
+            sidebar.classList.remove("close", "hoverable");
+        });
+
+        sidebar.addEventListener("mouseenter", () => {
+            if (sidebar.classList.contains("hoverable")) {
+                sidebar.classList.remove("close");
+            }
+        });
+        sidebar.addEventListener("mouseleave", () => {
+            if (sidebar.classList.contains("hoverable")) {
+                sidebar.classList.add("close");
+            }
+        });
+
+        submenuItems.forEach((item, index) => {
+            item.addEventListener("click", () => {
+                item.classList.toggle("show_submenu");
+                submenuItems.forEach((item2, index2) => {
+                    if (index !== index2) {
+                        item2.classList.remove("show_submenu");
+                    }
+                });
+            });
+        });
+
+        if (window.innerWidth < 768) {
+            sidebar.classList.add("close");
+        } else {
+            sidebar.classList.remove("close");
+        }
+
+        // Wait for the DOM content to be fully loaded
+        document.addEventListener("DOMContentLoaded", function () {
+            // Hamburger menu icon
+            const toggleSidebarButton = document.getElementById("toggleSidebar");
+            // Sidebar navigation
+            const sidebarNav = document.querySelector("aside nav");
+
+            // Function to toggle sidebar visibility
+            function toggleSidebar() {
+                sidebarNav.classList.toggle("hidden");
+            }
+
+            // Toggle sidebar when hamburger icon is clicked
+            toggleSidebarButton.addEventListener("click", toggleSidebar);
+
+            // Data for the line chart
+            const lineChartData = {
+                labels: ["January", "February", "March", "April", "May", "June"],
+                datasets: [
+                    {
+                        label: "Total Sales",
+                        data: [50, 60, 70, 65, 55, 60],
+                        borderColor: "#c40e00",
+                        borderWidth: 2,
+                        fill: false,
+                    },
+                    {
+                        label: "Total Orders",
+                        data: [40, 50, 45, 55, 60, 70],
+                        borderColor: "#003f5c",
+                        borderWidth: 2,
+                        fill: false,
+                    },
+                    {
+                        label: "Others",
+                        data: [30, 35, 40, 45, 50, 55],
+                        borderColor: "rgb(14, 172, 122)",
+                        borderWidth: 2,
+                        fill: false,
+                    },
+                ],
+            };
+
+            // Options for the line chart
+            const lineChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: "Month",
+                        },
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: "Amount",
+                        },
+                    },
+                },
+            };
+
+            // Initialize the line chart
+            const lineChart = new Chart(document.getElementById("lineChart"), {
+                type: "line",
+                data: lineChartData,
+                options: lineChartOptions,
+            });
+
+            // Data for the pie chart
+            const pieChartData = {
+                labels: ["Total Sales", "Total Orders", "Others"],
+                datasets: [
+                    {
+                        label: "Waste Composition",
+                        data: [60, 70, 55],
+                        backgroundColor: [
+                            "rgb(14, 172, 122)",
+                            "#2d0068",
+                            "#c40e00",
+                        ],
+                        borderWidth: 0,
+                    },
+                ],
+            };
+
+            // Options for the pie chart
+            const pieChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+            };
+
+            // Initialize the pie chart
+            const pieChart = new Chart(document.getElementById("pieChart"), {
+                type: "pie",
+                data: pieChartData,
+                options: pieChartOptions,
+            });
+
+            // Calculate and display waste amounts
+            const degradableAmount = lineChartData.datasets[0].data.reduce(
+                (a, b) => a + b,
+                0
+            );
+            const nonDegradableAmount = lineChartData.datasets[1].data.reduce(
+                (a, b) => a + b,
+                0
+            );
+            const othersAmount = lineChartData.datasets[2].data.reduce(
+                (a, b) => a + b,
+                0
+            );
+
+            document.getElementById("degradableAmount").textContent =
+                degradableAmount + " kg";
+            document.getElementById("nonDegradableAmount").textContent =
+                nonDegradableAmount + " kg";
+            document.getElementById("othersAmount").textContent =
+                othersAmount + " kg";
+        });
+    </script>
+</body>
+
+</html>
