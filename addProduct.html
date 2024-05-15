@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<!-- Coding by CodingNepal || www.codingnepalweb.com -->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>Side Navigation Bar in HTML CSS JavaScript</title>
+    <link rel="stylesheet" href="/css/addProduct.css" />
+</head>
+<style>
+    /* Import Google font - Poppins */
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    :root {
+        --white-color: #fff;
+        --red-color: #ff1800;
+        --grey-color: #707070;
+        --grey-color-light: #aaa;
+    }
+
+    body {
+        background-color: #e7f2fd;
+        transition: all 0.5s ease;
+    }
+
+    body.dark {
+        background-color: #333;
+    }
+
+    body.dark {
+        --white-color: #333;
+        --red-color: #fff;
+        --grey-color: #f2f2f2;
+        --grey-color-light: #aaa;
+    }
+
+    /* navbar */
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        left: 0;
+        background-color: var(--white-color);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 30px;
+        z-index: 1000;
+        box-shadow: 0 0 2px var(--grey-color-light);
+    }
+
+    .logo_item {
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+        font-size: 22px;
+        font-weight: 500;
+        color: var(--red-color);
+    }
+
+    .navbar img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+    }
+
+    .search_bar {
+        height: 47px;
+        max-width: 430px;
+        width: 100%;
+    }
+
+    .search_bar input {
+        height: 100%;
+        width: 100%;
+        border-radius: 25px;
+        font-size: 18px;
+        outline: none;
+        background-color: var(--white-color);
+        color: var(--grey-color);
+        border: 1px solid var(--grey-color-light);
+        padding: 0 20px;
+    }
+
+    .navbar_content {
+        display: flex;
+        align-items: center;
+        column-gap: 25px;
+    }
+
+    .navbar_content i {
+        cursor: pointer;
+        font-size: 20px;
+        color: var(--grey-color);
+    }
+
+    /* sidebar */
+    .sidebar {
+        background-color: var(--white-color);
+        width: 260px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        padding: 80px 20px;
+        z-index: 100;
+        overflow-y: scroll;
+        box-shadow: 0 0 1px var(--grey-color-light);
+        transition: all 0.5s ease;
+    }
+
+    .sidebar.close {
+        padding: 60px 0;
+        width: 80px;
+    }
+
+    .sidebar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .menu_content {
+        position: relative;
+    }
+
+    .menu_title {
+        margin: 15px 0;
+        padding: 0 20px;
+        font-size: 18px;
+    }
+
+    .sidebar.close .menu_title {
+        padding: 6px 30px;
+    }
+
+    .menu_title::before {
+        color: var(--grey-color);
+        white-space: nowrap;
+    }
+
+    .menu_dahsboard::before {
+        content: "Dashboard";
+    }
+
+    .menu_order::before {
+        content: "Orders";
+    }
+
+    .menu_customer::before {
+        content: "Customers";
+    }
+
+    .menu_inventory::before {
+        content: "Inventory";
+    }
+
+    .menu_reports::before {
+        content: "Reports";
+    }
+
+    .menu_setting::before {
+        content: "Setting";
+    }
+
+    .sidebar.close .menu_title::before {
+        content: "";
+        position: absolute;
+        height: 2px;
+        width: 18px;
+        border-radius: 12px;
+        background: var(--grey-color-light);
+    }
+
+    .menu_items {
+        padding: 0;
+        list-style: none;
+    }
+
+    .navlink_icon {
+        position: relative;
+        font-size: 22px;
+        min-width: 50px;
+        line-height: 40px;
+        display: inline-block;
+        text-align: center;
+        border-radius: 6px;
+    }
+
+    .navlink_icon::before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: calc(100% + 100px);
+        left: -20px;
+    }
+
+    .navlink_icon:hover {
+        background: var(--red-color);
+    }
+
+    .sidebar .nav_link {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 4px 15px;
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--grey-color);
+        white-space: nowrap;
+    }
+
+    .sidebar.close .navlink {
+        display: none;
+    }
+
+    .nav_link:hover {
+        color: var(--white-color);
+        background: var(--red-color);
+    }
+
+    .sidebar.close .nav_link:hover {
+        background: var(--white-color);
+    }
+
+    .submenu_item {
+        cursor: pointer;
+    }
+
+    .submenu {
+        display: none;
+    }
+
+    .submenu_item .arrow-left {
+        position: absolute;
+        right: 10px;
+        display: inline-block;
+        margin-right: auto;
+    }
+
+    .sidebar.close .submenu {
+        display: none;
+    }
+
+    .show_submenu~.submenu {
+        display: block;
+    }
+
+    .show_submenu .arrow-left {
+        transform: rotate(90deg);
+    }
+
+    .submenu .sublink {
+        padding: 15px 15px 15px 52px;
+    }
+
+    .bottom_content {
+        position: fixed;
+        bottom: 60px;
+        left: 0;
+        width: 260px;
+        cursor: pointer;
+        transition: all 0.5s ease;
+    }
+
+    .bottom {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        left: 0;
+        justify-content: space-around;
+        padding: 18px 0;
+        text-align: center;
+        width: 100%;
+        color: var(--grey-color);
+        border-top: 1px solid var(--grey-color-light);
+        background-color: var(--white-color);
+    }
+
+    .bottom i {
+        font-size: 20px;
+    }
+
+    .bottom span {
+        font-size: 18px;
+    }
+
+    .sidebar.close .bottom_content {
+        width: 50px;
+        left: 15px;
+    }
+
+    .sidebar.close .bottom span {
+        display: none;
+    }
+
+    .sidebar.hoverable .collapse_sidebar {
+        display: none;
+    }
+
+    #sidebarOpen {
+        display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+        #sidebarOpen {
+            font-size: 25px;
+            display: block;
+            margin-right: 10px;
+            cursor: pointer;
+            color: var(--grey-color);
+        }
+
+        .sidebar.close {
+            left: -100%;
+        }
+
+        .search_bar {
+            display: none;
+        }
+
+        .sidebar.close .bottom_content {
+            left: -100%;
+        }
+    }
+</style>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar">
+        <div class="logo_item">
+            <i class="bx bx-menu" id="sidebarOpen"></i>
+            <img src="/assets/LOGOMARK png.png" alt=""></i>Lagaula
+        </div>
+
+        <div class="search_bar">
+            <input type="text" placeholder="Search" />
+        </div>
+
+        <div class="navbar_content">
+            <i class="bi bi-grid"></i>
+            <i class='bx bx-bell'></i>
+            <i class="bx bx-user"></i>
+        </div>
+    </nav>
+
+    <!-- sidebar -->
+     <!-- sidebar -->
+     <nav class="sidebar">
+        <div class="menu_content">
+            <ul class="menu_items">
+                <div class="menu_title menu_dahsboard"></div>
+                <!-- start -->
+                <li class="item">
+                    <div href="Lagaula.html" class="nav_link submenu_item">
+                        <span class="navlink_icon">
+                            <i class="bx bx-home-alt"></i>
+                        </span>
+                        <span class="navlink">Home</span>
+                    </div>
+                </li>
+                <!-- end -->
+
+                <!-- start -->
+                <li class="item">
+                    <div href="#" class="nav_link submenu_item">
+                        <span class="navlink_icon">
+                            <i class="bx bx-grid-alt"></i>
+                        </span>
+                        <span class="navlink">Products</span>
+                        <i class="bx bx-chevron-right arrow-left"></i>
+                    </div>
+
+                    <ul class="menu_items submenu">
+                        <a href="productAll.html" class="nav_link sublink">All Products</a>
+                        <a href="addProduct.html" class="nav_link sublink">Add Products</a>
+
+                    </ul>
+                </li>
+
+                <li class="item">
+                    <div href="allOrder.html" class="nav_link submenu_item">
+                        <span class="navlink_icon">
+                            <i class="bx bxs-magic-wand"></i>
+                        </span>
+                        <span class="navlink">Order</span>
+                        <i class="bx bx-chevron-right arrow-left"></i>
+                    </div>
+
+                    <ul class="menu_items submenu">
+                        <a href="allOrder.html" class="nav_link sublink">All Orders</a>
+
+                    </ul>
+                </li>
+
+                <li class="item">
+                    <div href="#" class="nav_link submenu_item">
+                        <span class="navlink_icon">
+                            <i class="bx bx-user"></i>
+                        </span>
+                        <span class="navlink">Customer</span>
+                        <i class="bx bx-chevron-right arrow-left"></i>
+                    </div>
+
+                    <ul class="menu_items submenu">
+                        <a href="allCustomer.html" class="nav_link sublink">All Customers</a>
+
+                    </ul>
+                </li>
+
+                <li class="item">
+                    <div href="#" class="nav_link submenu_item">
+                        <span class="navlink_icon">
+                            <i class="bx bx-chart"></i>
+                        </span>
+                        <span class="navlink">Reports</span>
+                        <i class="bx bx-chevron-right arrow-left"></i>
+                    </div>
+
+                    <ul class="menu_items submenu">
+                        <a href="sales.html" class="nav_link sublink">Sales Reports</a>
+
+                    </ul>
+                </li>
+
+                <li class="item">
+                    <div href="#" class="nav_link submenu_item">
+                        <span class="navlink_icon">
+                            <i class="bx bx-cog"></i>
+                        </span>
+                        <span class="navlink">Setting</span>
+                        <i class="bx bx-chevron-right arrow-left"></i>
+                    </div>
+
+                    <ul class="menu_items submenu">
+                        <a href="setting.html" class="nav_link sublink">User Setting</a>
+
+                    </ul>
+                </li>
+                <!-- end -->
+            </ul>
+
+            <!-- Sidebar Open / Close -->
+            <div class="bottom_content">
+                <div class="bottom expand_sidebar">
+                    <span> Expand</span>
+                    <i class='bx bx-log-in'></i>
+                </div>
+                <div class="bottom collapse_sidebar">
+                    <span> Collapse</span>
+                    <i class='bx bx-log-out'></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="container">
+        <header>Add Product Form</header>
+        <form action="#" class="form">
+          <div class="input-box">
+            <label>Product Name</label>
+            <input type="text" placeholder="Product Name" required />
+          </div>
+          <div class="input-box">
+            <label>Product Description</label>
+            <input type="text" placeholder="Product Description" required />
+          </div>
+          <div class="column">
+            <div class="input-box">
+              <label>Product Category</label>
+              <input type="text" placeholder="Category" required />
+            </div>
+            <div class="input-box">
+                <label>Product Price</label>
+                <input type="number" placeholder="Price" required />
+              </div>
+            <!-- <div class="input-box">
+              <label>Birth Date</label>
+              <input type="date" placeholder="Enter birth date" required />
+            </div> -->
+          </div>
+          <div class="input-box">
+            <label>Product Image</label>
+            <input type="file" placeholder="Image" required />
+          </div>
+          <!-- <div class="gender-box">
+            <h3>Gender</h3>
+            <div class="gender-option">
+              <div class="gender">
+                <input type="radio" id="check-male" name="gender" checked />
+                <label for="check-male">male</label>
+              </div>
+              <div class="gender">
+                <input type="radio" id="check-female" name="gender" />
+                <label for="check-female">Female</label>
+              </div>
+              <div class="gender">
+                <input type="radio" id="check-other" name="gender" />
+                <label for="check-other">prefer not to say</label>
+              </div>
+            </div> -->
+          </div>
+          <!-- <div class="input-box address">
+            <label>Address</label>
+            <input type="text" placeholder="Enter street address" required />
+            <input type="text" placeholder="Enter street address line 2" required />
+            <div class="column">
+              <div class="select-box">
+                <select>
+                  <option hidden>Country</option>
+                  <option>America</option>
+                  <option>Japan</option>
+                  <option>India</option>
+                  <option>Nepal</option>
+                </select>
+              </div>
+              <input type="text" placeholder="Enter your city" required />
+            </div> -->
+            <!-- <div class="column">
+              <input type="text" placeholder="Enter your region" required />
+              <input type="number" placeholder="Enter postal code" required />
+            </div>
+          </div> -->
+          <button>Submit</button>
+        </form>
+      </section>
+
+    <!--Form-->
+
+    <!-- JavaScript -->
+    <script>
+        const body = document.querySelector("body");
+        const sidebar = document.querySelector(".sidebar");
+        const submenuItems = document.querySelectorAll(".submenu_item");
+        const sidebarOpen = document.querySelector("#sidebarOpen");
+        const sidebarClose = document.querySelector(".collapse_sidebar");
+        const sidebarExpand = document.querySelector(".expand_sidebar");
+        sidebarOpen.addEventListener("click", () => sidebar.classList.toggle("close"));
+
+        sidebarClose.addEventListener("click", () => {
+            sidebar.classList.add("close", "hoverable");
+        });
+        sidebarExpand.addEventListener("click", () => {
+            sidebar.classList.remove("close", "hoverable");
+        });
+
+        sidebar.addEventListener("mouseenter", () => {
+            if (sidebar.classList.contains("hoverable")) {
+                sidebar.classList.remove("close");
+            }
+        });
+        sidebar.addEventListener("mouseleave", () => {
+            if (sidebar.classList.contains("hoverable")) {
+                sidebar.classList.add("close");
+            }
+        });
+
+        submenuItems.forEach((item, index) => {
+            item.addEventListener("click", () => {
+                item.classList.toggle("show_submenu");
+                submenuItems.forEach((item2, index2) => {
+                    if (index !== index2) {
+                        item2.classList.remove("show_submenu");
+                    }
+                });
+            });
+        });
+
+        if (window.innerWidth < 768) {
+            sidebar.classList.add("close");
+        } else {
+            sidebar.classList.remove("close");
+        }
+    </script>
+</body>
+
+</html>
