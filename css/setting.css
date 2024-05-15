@@ -43,25 +43,21 @@
     align-items: center;
 }
 
-.reset {
+button {
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
-    background: #c40e00;
     color: #fff;
     cursor: pointer;
+}
+
+.reset {
+    background: #c40e00;
 }
 
 .save {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
     background: #4CAF50;
-    color: #fff;
-    cursor: pointer;
-    margin-left: auto;
 }
-
 
 .form-group button:disabled {
     background: #ccc;
