@@ -170,6 +170,7 @@
   .menu_items {
       padding: 0;
       list-style: none;
+      text-decoration: none;
   }
 
   .navlink_icon {
@@ -208,6 +209,7 @@
   .sidebar.close .navlink {
       display: none;
   }
+
 
   .nav_link:hover {
       color: var(--white-color);

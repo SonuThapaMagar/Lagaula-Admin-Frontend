@@ -7,16 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <title>Lagaula Admin Dashboard</title>
+    <title>Product</title>
     <link rel="stylesheet" href="/css/dash.css" />
-    <link rel="stylesheet" href="css/main.css">
 
     <!----======== Favicon ======== -->
     <link rel="icon" href="/assets/favicon.ico" type="images/x-icon">
 
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 
 
@@ -46,38 +45,14 @@
         <div class="overview">
             <div class="title">
                 <i class="uil uil-tachometer-fast-alt"></i>
-                <span class="text">Dashboard</span>
+                <span class="text">All Products</span>
             </div>
 
-            <div class="boxes">
-                <div class="box box1">
-                    <i class="uil uil-files-landscapes"></i>
-                    <span class="text">Total Products</span>
-                    <span class="number">50,120</span>
-                </div>
-                <div class="box box2">
-                    <i class="uil uil-box"></i>
-                    <span class="text">Total Order</span>
-                    <span class="number">20,120</span>
-                </div>
-                <div class="box box3">
-                    <i class="uil uil-user"></i>
-                    <span class="text">Total Customers</span>
-                    <span class="number">10,120</span>
-                </div>
-                <div class="box box4">
-                    <i class="uil uil-chart"></i>
-                    <span class="text">Reports</span>
-                    <span class="number">10,120</span>
-                </div>
-            </div>
+
         </div>
 
         <div class="activity">
-            <div class="title">
-                <i class="uil uil-clock-three"></i>
-                <span class="text">Recent Sales </span>
-            </div>
+
 
             <div class="activity-data">
                 <table class="styled-table">
@@ -89,6 +64,8 @@
                             <th>Address</th>
                             <th>Orders</th>
                             <th>Action</th>
+                            <th></th>
+
 
                         </tr>
                     </thead>
@@ -100,7 +77,14 @@
                             <td>Texas</td>
                             <td>3</td>
                             <td>
-                                <a href="customerDetails.html">View</button>
+                                <a href="editProduct.html">
+                                    <button class="edit">Edit</button>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="">
+                                    <button class="delete">Delete</button>
+                                </a>
                             </td>
 
                         </tr>
@@ -113,7 +97,8 @@
     </div>
 
     <!-- sidebar -->
-    <nav class="sidebar">
+      <!-- sidebar -->
+      <nav class="sidebar">
         <div class="menu_content">
             <ul class="menu_items">
                 <div class="menu_title menu_dahsboard"></div>
@@ -123,9 +108,7 @@
                         <span class="navlink_icon">
                             <i class="bx bx-home-alt"></i>
                         </span>
-                        <a href="Lagaula.html" style="text-decoration: none;">
-                            <span class="navlink">Home</span>
-                        </a>
+                        <span class="navlink">Home</span>
                     </div>
                 </li>
                 <!-- end -->
